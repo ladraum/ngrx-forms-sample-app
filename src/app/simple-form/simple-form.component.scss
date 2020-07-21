@@ -1,0 +1,7 @@
+input {
+  margin: 5px 0;
+}
+
+input.ngrx-forms-dirty.ngrx-forms-invalid {
+  outline: 1px solid red;
+}
