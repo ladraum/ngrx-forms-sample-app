@@ -1,0 +1,46 @@
+<div>
+  <b>Grower onboarding application:</b>
+  <form [ngrxFormState]="(onboardingForm$ | async)">
+    <div>
+      <label>
+        Name:
+        <input type="text"
+           [ngrxFormControlState]="(onboardingForm$ | async).controls.name">
+      </label>
+    </div>
+    <div>
+      <label>
+        State:
+        <input type="text"
+          [ngrxFormControlState]="(onboardingForm$ | async).controls.state">
+      </label>
+    </div>
+    <div>
+      <label>
+        Comodity:
+        <input type="text"
+          [ngrxFormControlState]="(onboardingForm$ | async).controls.comodity">
+      </label>
+    </div>
+    <div>
+      <label>
+        Area:
+        <input type="number"
+          [ngrxFormControlState]="(onboardingForm$ | async).controls.area">
+      </label>
+    </div>
+  </form>
+</div>
+
+<div style="padding-top: 20px;">
+  <b>Current state values:</b>
+  <div>Name: {{ (onboardingForm$ | async).controls.name.value }} </div>
+  <div>State: {{ (onboardingForm$ | async).controls.state.value }} </div>
+  <div>Comodity: {{ (onboardingForm$ | async).controls.comodity.value }} </div>
+  <div>Area: {{ (onboardingForm$ | async).controls.area.value }} </div>
+</div>
+
+<div style="padding-top: 20px;">
+  <b>Full form state:</b>
+  <pre>{{ (onboardingForm$ | async) | json}}</pre>
+</div>

@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "simple-form-application"
+    }
+  },
+  "defaultProject": "simple-form-application",
+  "cli": {
+    "analytics": false
+  }
 }
