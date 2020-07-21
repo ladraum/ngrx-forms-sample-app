@@ -1,5 +1,5 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { onNgrxForms, setValue, formGroupReducer } from 'ngrx-forms';
+import { createReducer, on } from '@ngrx/store';
+import { onNgrxForms, setValue, wrapReducerWithFormStateUpdate } from 'ngrx-forms';
 
 import { updateGroup, validate, createFormGroupState } from 'ngrx-forms';
 import { required } from 'ngrx-forms/validation';
@@ -29,6 +29,13 @@ export const initialFormState = {
   growerOnboarding: createFormGroupState<Grower>('growerOnboarding', initialGrowerState),
 };
 
+export const validateGrowerForm = updateGroup<Grower>({
+  name: validate(required),
+  state: validate(required),
+  comodity: validate(required),
+  area: validate(required),
+});
+
 const _growerReducer = createReducer(
   initialFormState,
   onNgrxForms(),
@@ -40,7 +47,12 @@ const _growerReducer = createReducer(
 );
 
 export function growerReducer(state, action) {
-  return _growerReducer(state, action);
+  const reducer = wrapReducerWithFormStateUpdate(
+    _growerReducer,
+    state => state.growerOnboarding,
+    validateGrowerForm
+  )
+  return reducer(state, action);
 }
 
 function loadData() {
